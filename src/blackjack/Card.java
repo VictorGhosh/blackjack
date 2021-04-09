@@ -20,6 +20,7 @@ public final class Card {
 	 * 
 	 * @param rank rank of the card
 	 * @param suit suit of the card
+	 * @throws NullPointerException if rank or suit are null
 	 */
 	public Card(Rank rank, Suit suit) {
 		if (rank == null || suit == null) {
@@ -47,8 +48,51 @@ public final class Card {
 		return this.getSuit();
 	}
 
+	/**
+	 * Returns value of card in blackjack. Note a 11 is returned for ace and 0 is
+	 * returned in error
+	 * 
+	 * @return the value of this card or a 11 for ace or a 0 in an error
+	 */
+	public int getValue() {
+		int index = this.getRank().ordinal();
+
+		if (index < 9) {
+			return index;
+		}
+		if (index > 8 && index < 12) {
+			return 10;
+		}
+		if (this.getRank() == Rank.ACE) {
+			return 11;
+		}
+		return 0;
+	}
+
 	@Override
 	public String toString() {
 		return this.rank + " of " + this.suit;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Card)) {
+			return false;
+		}
+		
+		Card other = (Card) obj;
+		if (this.getRank() == other.getRank()) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		int res = Double.hashCode(this.getValue());
+		return res * 31;
 	}
 }

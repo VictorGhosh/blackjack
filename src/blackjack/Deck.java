@@ -48,8 +48,8 @@ public class Deck {
 	@Override
 	public String toString() {
 		StringBuilder res = new StringBuilder();
-		for (Card card : this.deck) {
-			res.append(card + "\n");
+		for (Card c : this.deck) {
+			res.append(c + "\n");
 		}
 		return res.toString();
 	}
