@@ -8,12 +8,12 @@ public final class Card {
 	/**
 	 * The rank or face of the card
 	 */
-	private Rank rank;
+	private final Rank rank;
 
 	/**
 	 * The suit of the card
 	 */
-	private Suit suit;
+	private final Suit suit;
 
 	/**
 	 * Initializes this card with specified rank and suit

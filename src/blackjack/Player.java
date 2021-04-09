@@ -28,6 +28,15 @@ public class Player {
 	public void take(Card c) {
 		hand.add(c);
 	}
+	
+	/**
+	 * Returns list of all cards in the players hand
+	 * 
+	 * @return list of cards in the players hand
+	 */
+	public List<Card> getHand() {
+		return new ArrayList<>(this.hand);
+	}
 
 	/**
 	 * Returns the total value of the players hand. Currently values ace at 11
@@ -50,7 +59,7 @@ public class Player {
 	/**
 	 * Returns true if player has specified card and false if not
 	 * 
-	 * @param c card to check if player has
+	 * @param c card to check if p)layer has
 	 * @return true if player has card and false otherwise
 	 */
 	public boolean hasA(Card c) {
