@@ -28,7 +28,7 @@ public class Player {
 	public void take(Card c) {
 		hand.add(c);
 	}
-	
+
 	/**
 	 * Returns list of all cards in the players hand
 	 * 
@@ -77,7 +77,7 @@ public class Player {
 	public void clear() {
 		this.hand.clear();
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder res = new StringBuilder();

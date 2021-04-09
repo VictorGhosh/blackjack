@@ -73,7 +73,7 @@ public final class Card {
 	public String toString() {
 		return this.rank + " of " + this.suit;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -82,14 +82,14 @@ public final class Card {
 		if (!(obj instanceof Card)) {
 			return false;
 		}
-		
+
 		Card other = (Card) obj;
 		if (this.getRank() == other.getRank()) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		int res = Double.hashCode(this.getValue());
