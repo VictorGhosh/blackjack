@@ -3,8 +3,9 @@ package blackjack;
 public class Blackjack {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Game g = new Game(3);
+		g.start();
+		System.out.println(g);
 	}
 
 }

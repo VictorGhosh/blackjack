@@ -11,7 +11,7 @@ public class Player {
 	/**
 	 * List of cards in players hand
 	 */
-	private List<Card> hand;
+	protected List<Card> hand;
 
 	/**
 	 * Initialize player with empty hand
@@ -30,9 +30,9 @@ public class Player {
 	}
 
 	/**
-	 * Returns list of all cards in the players hand
+	 * Returns list of all visible cards in the players hand
 	 * 
-	 * @return list of cards in the players hand
+	 * @return list of visible cards in hand
 	 */
 	public List<Card> getHand() {
 		return new ArrayList<>(this.hand);
@@ -81,7 +81,7 @@ public class Player {
 	@Override
 	public String toString() {
 		StringBuilder res = new StringBuilder();
-		for (Card c : this.hand) {
+		for (Card c : this.getHand()) {
 			res.append(c + "\n");
 		}
 		return res.toString();
