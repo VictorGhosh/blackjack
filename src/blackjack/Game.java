@@ -8,7 +8,7 @@ public class Game {
 	/**
 	 * List of players in the game
 	 */
-	private List<Player> players;
+	protected List<Player> players;
 
 	/**
 	 * Game dealer
@@ -69,11 +69,11 @@ public class Game {
 	 * 
 	 * @param p player to make move
 	 * @param move move to make
-	 * @return player that made move
+	 * @return false if player stood and true otherwise
 	 * @throws IllegalArgumentException if player is not in game
 	 * @throws IllegalArgumentException if move is not legal
 	 */
-	public Player turn(Player p, int move) {
+	public Player move(Player p, String move) {
 		Player player;
 		if (this.players.contains(p)) {
 			player = this.players.get(this.players.indexOf(p));
@@ -85,16 +85,16 @@ public class Game {
 		}
 		
 		switch (move) {
-		case 0:
+		case "s":
 			stand(player);
-			break;
-		case 1:
+			return null;
+		case "h":
 			hit(player);
 			break;
 		default:
 			throw new IllegalArgumentException("Illegal move");
 		}
-		return player;
+		return p;
 	}
 
 	/**
@@ -129,6 +129,19 @@ public class Game {
 	public Player hit(Player p) {
 		p.take(this.deck.draw());
 		return p;
+	}
+	
+	/**
+	 * Returns true if hand is bust and false otherwise
+	 * 
+	 * @param p  player whose hand it to be checked
+	 * @return true if hand is bust and false otherwise.
+	 */
+	public boolean isBust(Player p) {
+		if (p.getValue() <= 21) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override
