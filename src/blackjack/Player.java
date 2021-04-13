@@ -14,10 +14,86 @@ public class Player {
 	protected List<Card> hand;
 
 	/**
-	 * Initialize player with empty hand
+	 * Current cash player has
+	 */
+	private int cash;
+
+	/**
+	 * Current bet of player
+	 */
+	private int bet;
+
+	/**
+	 * Initialize player with empty hand and 10 dollars
 	 */
 	public Player() {
+		this(10);
+	}
+
+	/**
+	 * Initialize player with empty hand and a specified number of dollars
+	 * 
+	 * @param cash amount of cash the player has
+	 * @throws IllegalArgumentException if starting cash is less then 1 or more then
+	 *                                  Integer.MAX_VALUE
+	 */
+	public Player(int cash) {
+		if (cash < 1 || cash > Integer.MAX_VALUE) {
+			throw new IllegalArgumentException("Illegal starting cash ammount");
+		}
 		this.hand = new ArrayList<>();
+		this.cash = cash;
+	}
+
+	/**
+	 * Returns the amount of cash player has
+	 * 
+	 * @return amount of cash player has
+	 */
+	public int getCash() {
+		int res = this.cash;
+		return res;
+	}
+
+	/**
+	 * Add cash to this player
+	 * 
+	 * @param amount amount of cash to add to player
+	 */
+	public void pay(int amount) {
+		this.cash += amount;
+	}
+
+	/**
+	 * Bet a specific amount
+	 * 
+	 * @param amount amount to bet
+	 * @throws IllegalArgumentException if amount is less then 1 or if final player
+	 *                                  cash value will be less then 0
+	 */
+	public void bet(int amount) {
+		if (amount < 1 || (this.cash - amount) < 0) {
+			throw new IllegalArgumentException("Illegal betting amount");
+		}
+		this.bet = amount;
+		this.cash -= amount;
+	}
+	
+	/**
+	 * Returns the amount player has bet
+	 * @return amount player has bet
+	 */
+	public int getBet() {
+		int res = this.bet;
+		return res;
+	}
+	
+	/**
+	 * resets the bet. May be unnecessary
+	 */
+	//TODO: Check this out
+	public void resetBet() {
+		this.bet = 0;
 	}
 
 	/**

@@ -58,7 +58,7 @@ public final class Card {
 		int index = this.getRank().ordinal();
 
 		if (index < 9) {
-			return index;
+			return index + 2;
 		}
 		if (index > 8 && index < 12) {
 			return 10;

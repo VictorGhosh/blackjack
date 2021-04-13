@@ -13,7 +13,7 @@ public class Game {
 	/**
 	 * Game dealer
 	 */
-	private Dealer dealer;
+	protected Dealer dealer;
 
 	/**
 	 * Deck the game is being played with
@@ -67,7 +67,7 @@ public class Game {
 	 * Executes move for player p. Move is a specified int value, 0 for stand 2 for
 	 * hit. Player must be in this game.
 	 * 
-	 * @param p player to make move
+	 * @param p    player to make move
 	 * @param move move to make
 	 * @return false if player stood and true otherwise
 	 * @throws IllegalArgumentException if player is not in game
@@ -77,13 +77,12 @@ public class Game {
 		Player player;
 		if (this.players.contains(p)) {
 			player = this.players.get(this.players.indexOf(p));
-		}
-		else if (p == this.dealer) {
+		} else if (p == this.dealer) {
 			player = this.dealer;
 		} else {
 			throw new IllegalArgumentException("Player not in game");
 		}
-		
+
 		switch (move) {
 		case "s":
 			stand(player);
@@ -97,6 +96,12 @@ public class Game {
 		return p;
 	}
 
+	public void playDealer() {
+		while (this.dealer.getValue() <= 17) {
+			hit(this.dealer);
+		}
+	}
+
 	/**
 	 * Deal each player and the dealer two cards to start the game
 	 */
@@ -106,6 +111,24 @@ public class Game {
 				this.hit(p);
 			}
 			this.hit(dealer);
+		}
+	}
+
+	/**
+	 * Pay players at end of hand. Rules are not full yet
+	 */
+	public void payout() {
+		for (Player p : this.players) {
+			if (!isBust(p)) {
+				if (isBust(this.dealer)) {
+					p.pay(p.getBet() * 2);
+				} else if (p.getValue() > this.dealer.getValue()) {
+					p.pay(p.getBet() * 2);
+				} else if (p.getValue() == this.dealer.getValue()) {
+					p.pay(p.getBet());
+				}
+			}
+			p.resetBet();
 		}
 	}
 
@@ -130,11 +153,11 @@ public class Game {
 		p.take(this.deck.draw());
 		return p;
 	}
-	
+
 	/**
 	 * Returns true if hand is bust and false otherwise
 	 * 
-	 * @param p  player whose hand it to be checked
+	 * @param p player whose hand it to be checked
 	 * @return true if hand is bust and false otherwise.
 	 */
 	public boolean isBust(Player p) {
