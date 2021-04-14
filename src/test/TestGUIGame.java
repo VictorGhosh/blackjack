@@ -1,10 +1,13 @@
 package test;
 
+import blackjack.GUIGame;
+
 public class TestGUIGame {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		GUIGame g = new GUIGame(3);
+		
+		g.buildFrame();
 	}
 
 }
