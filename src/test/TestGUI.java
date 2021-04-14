@@ -1,6 +1,6 @@
 package test;
 
-import blackjack.GUIGame;
+import game.GUIGame;
 
 public class TestGUI {
 

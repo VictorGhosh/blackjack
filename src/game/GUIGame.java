@@ -1,18 +1,16 @@
-package blackjack;
+package game;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
+
+import blackjack.Game;
 
 public class GUIGame extends Game {
 	
@@ -51,64 +49,15 @@ public class GUIGame extends Game {
 		dealerPan.setBounds(10, 10, 980, 330);
 		dealerPan.setBackground(tableColor);
 		dealerPan.setBorder(makeBorder(outlineColor, 3, 20, "Dealer"));
-				
 		
-		
-		
-		
-		
-		JPanel player1Pan = new JPanel();
-		player1Pan.setBounds(10, 350, 320, 330);
-		player1Pan.setBackground(tableColor);
-		player1Pan.setBorder(makeBorder(outlineColor, 3, 20, "Player 1"));
-		
-		JLabel wallet1 = new JLabel(" Wallet ");
-		wallet1.setBounds(10, 290, 145, 30);
-		wallet1.setBackground(Color.BLACK);
-		wallet1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-		player1Pan.add(wallet1);
-		
-		JLabel bet1 = new JLabel(" Bet: ");
-		bet1.setBounds(165, 290, 145, 30);
-		bet1.setBackground(Color.BLACK);
-		bet1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-		player1Pan.add(bet1);
-		
-//		cards1.setBounds(10, 30, 300, 250);
-		
-		
-		
-		String[][] rec = {
-				   { "1", "Steve"},
-				   { "2", "Virat"},
-				   { "3", "Kane"},
-				};
-		String[] header = { "Rank", "Player"};
-		
-		JTable table = new JTable(rec, header);
-		table.setBounds(0, 0, 50, 50);
-		JScrollPane scroller = new JScrollPane(table);
-		scroller.setBounds(10, 30, 300, 250);
-        scroller.setPreferredSize(new Dimension(300, 250));
-        scroller.setBackground(tableColor);
-        
-        player1Pan.add(scroller);
-		
-		
-		
-		
+		PlayerGUI p1GUI = new PlayerGUI(10, 350);
+		PlayerGUI p2GUI = new PlayerGUI(340, 350);
+		PlayerGUI p3GUI = new PlayerGUI(670, 350);
 
-        
-		JPanel player2Pan = new JPanel();
-		player2Pan.setBounds(340, 350, 320, 330);
-		player2Pan.setBackground(tableColor);
-		player2Pan.setBorder(makeBorder(outlineColor, 3, 20, "Player 2"));
-		
-		JPanel player3Pan = new JPanel();
-		player3Pan.setBounds(670, 350, 320, 330);
-		player3Pan.setBackground(tableColor);
-		player3Pan.setBorder(makeBorder(outlineColor, 3, 20, "Player 3"));
-		
+		p1GUI.buildPanel();
+		p2GUI.buildPanel();
+		p3GUI.buildPanel();
+
 		JPanel bet = new JPanel();
 		bet.setBounds(340, 690, 320, 50);
 		bet.setBackground(tableColor);
@@ -122,10 +71,10 @@ public class GUIGame extends Game {
 		hitButton.setText("Hit");
 		hitButton.setBounds(670, 690, 320, 50);
 		
+		f.add(p1GUI.getPanel());
+		f.add(p2GUI.getPanel());
+		f.add(p3GUI.getPanel());
 		f.add(dealerPan);
-		f.add(player1Pan);
-		f.add(player2Pan);
-		f.add(player3Pan);
 		f.add(standButton);
 		f.add(hitButton);
 		f.add(bet);
