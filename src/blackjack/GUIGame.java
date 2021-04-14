@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 public class GUIGame extends Game {
 
@@ -31,34 +33,49 @@ public class GUIGame extends Game {
 	}
 
 	public void buildFrame() {
-		int numPlayers = this.players.size();
-		int border = 20;
-		int fX = 1000;
-		int fY = 1000;
-		int dX = fX - (int) (2.5 * border);
-		int dY = (fY - (4 * border)) / 2;
-		int pX = (dX / numPlayers) - ((numPlayers - 1) * (border));
-		int index = 0;
-
-		// Making Frame
-		JFrame f = new JFrame("BlackJack");
+		JFrame f = new JFrame("Blackjack");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setSize(fX, fY);
+		f.setSize(1000 + 15, 750 + 35);
 		f.setLayout(null);
 		f.setVisible(true);
-
-		// Adding panels
-		this.dealerPan.setBackground(Color.GREEN);
-		this.dealerPan.setBounds(border, border, dX, dY);
-		f.add(this.dealerPan);
-		for (int i = 0; i < numPlayers; i++) {
-			JPanel p = new JPanel();
-			p.setBackground(Color.gray);
-			p.setBounds(border + index, dY + (2 * border), pX, dY);
-			index += (i + 1) * (pX + border);
-			
-			playerPans.add(p);
-			f.add(p);
-		}
+		
+		JPanel dealer = new JPanel();
+		dealer.setBounds(10, 10, 980, 330);
+		dealer.setBackground(Color.YELLOW);
+		f.add(dealer);
+		
+		JPanel player1 = new JPanel();
+		player1.setBounds(10, 350, 320, 330);
+		player1.setBackground(Color.YELLOW);
+		f.add(player1);
+		
+		JPanel player2 = new JPanel();
+		player2.setBounds(340, 350, 320, 330);
+		player2.setBackground(Color.YELLOW);
+		f.add(player2);
+		
+		JPanel player3 = new JPanel();
+		player3.setBounds(670, 350, 320, 330);
+		player3.setBackground(Color.YELLOW);
+		f.add(player3);
+		
+		JButton standButton = new JButton();
+//		standButton.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.BOLD));
+//		standButton.setForeground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
+		standButton.setBounds(10, 690, 320, 50);
+		standButton.setText("Stand");
+		f.add(standButton);
+		
+		JButton hitButton = new JButton();
+//		hitButton.setForeground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
+//		hitButton.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.BOLD));
+		hitButton.setText("Hit");
+		hitButton.setBounds(670, 690, 320, 50);
+		f.add(hitButton);
+		
+		JButton bet = new JButton();
+		bet.setBounds(340, 690, 320, 50);
+		bet.setBackground(Color.YELLOW);
+		f.add(bet);
 	}
 }
