@@ -1,21 +1,21 @@
 package blackjack;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 public class GUIGame extends Game {
-
+	
 	/**
 	 * Initialize a game with the GUI with one player
 	 */
@@ -41,10 +41,10 @@ public class GUIGame extends Game {
 		
 		JFrame f = new JFrame("Blackjack");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setSize(1000 + 15, 750 + 35);
+		f.setSize(1000 + 15 + 10, 750 + 35 + 10);
 		f.setBackground(tableColor);
 		f.getContentPane().setBackground(tableColor);
-		f.setLayout(null);
+		f.getContentPane().setLayout(null);
 		f.setVisible(true);
 		
 		JPanel dealerPan = new JPanel();
@@ -52,16 +52,53 @@ public class GUIGame extends Game {
 		dealerPan.setBackground(tableColor);
 		dealerPan.setBorder(makeBorder(outlineColor, 3, 20, "Dealer"));
 				
+		
+		
+		
+		
+		
 		JPanel player1Pan = new JPanel();
 		player1Pan.setBounds(10, 350, 320, 330);
 		player1Pan.setBackground(tableColor);
 		player1Pan.setBorder(makeBorder(outlineColor, 3, 20, "Player 1"));
 		
-		JButton wallet1Button = new JButton("Wallet");
-		wallet1Button.setBounds(0, 0, 80, 30);
-		player1Pan.add(wallet1Button);
+		JLabel wallet1 = new JLabel(" Wallet ");
+		wallet1.setBounds(10, 290, 145, 30);
+		wallet1.setBackground(Color.BLACK);
+		wallet1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+		player1Pan.add(wallet1);
+		
+		JLabel bet1 = new JLabel(" Bet: ");
+		bet1.setBounds(165, 290, 145, 30);
+		bet1.setBackground(Color.BLACK);
+		bet1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+		player1Pan.add(bet1);
+		
+//		cards1.setBounds(10, 30, 300, 250);
+		
+		
+		
+		String[][] rec = {
+				   { "1", "Steve"},
+				   { "2", "Virat"},
+				   { "3", "Kane"},
+				};
+		String[] header = { "Rank", "Player"};
+		
+		JTable table = new JTable(rec, header);
+		table.setBounds(0, 0, 50, 50);
+		JScrollPane scroller = new JScrollPane(table);
+		scroller.setBounds(10, 30, 300, 250);
+        scroller.setPreferredSize(new Dimension(300, 250));
+        scroller.setBackground(tableColor);
+        
+        player1Pan.add(scroller);
+		
+		
+		
 		
 
+        
 		JPanel player2Pan = new JPanel();
 		player2Pan.setBounds(340, 350, 320, 330);
 		player2Pan.setBackground(tableColor);
@@ -92,6 +129,9 @@ public class GUIGame extends Game {
 		f.add(standButton);
 		f.add(hitButton);
 		f.add(bet);
+		
+//		f.revalidate();
+		f.repaint();
 	}
 	
 	private Border makeBorder(Color c, int thickness, int fontSize, String title) {
