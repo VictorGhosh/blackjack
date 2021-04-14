@@ -50,7 +50,7 @@ public class PlayerGUI {
 	 * @param x x value for top left corner of panel
 	 * @param y y value for top left corner of panel
 	 */
-	public PlayerGUI(int x, int y) {
+	public PlayerGUI(int x, int y, String title) {
 		// Table color scheme
 		Color tableColor = new Color(53, 101, 77);
 		Color outlineColor = Color.WHITE;
@@ -59,7 +59,7 @@ public class PlayerGUI {
 		this.playerPan = new JPanel();
 		this.playerPan.setBounds(x, y, 320, 330);
 		this.playerPan.setBackground(tableColor);
-		this.playerPan.setBorder(makeBorder(outlineColor, 3, 20, "Player 1"));
+		this.playerPan.setBorder(makeBorder(outlineColor, 3, 20, title));
 
 		// Make wallet
 		this.walletLab = new JLabel(" Wallet: ");
@@ -105,7 +105,7 @@ public class PlayerGUI {
 	public void buildPanel() {
 		this.playerPan.add(this.walletLab);
 		this.playerPan.add(this.betLab);
-		this.playerPan.add(scroller);
+		this.playerPan.add(this.scroller);
 	}
 
 	/**

@@ -45,18 +45,18 @@ public class GUIGame extends Game {
 		f.getContentPane().setLayout(null);
 		f.setVisible(true);
 		
-		JPanel dealerPan = new JPanel();
-		dealerPan.setBounds(10, 10, 980, 330);
-		dealerPan.setBackground(tableColor);
-		dealerPan.setBorder(makeBorder(outlineColor, 3, 20, "Dealer"));
+		PlayerGUI p1GUI = new PlayerGUI(10, 350, "Player 1");
+		PlayerGUI p2GUI = new PlayerGUI(340, 350, "Player 2");
+		PlayerGUI p3GUI = new PlayerGUI(670, 350, "Player 3");
 		
-		PlayerGUI p1GUI = new PlayerGUI(10, 350);
-		PlayerGUI p2GUI = new PlayerGUI(340, 350);
-		PlayerGUI p3GUI = new PlayerGUI(670, 350);
+		// TODO: DealerGUI should probably extend some sort of player GUI or something
+		// ACTUALY I THINK IT SHOULD BE AN INTERFACE
+		DealerGUI dGUI = new DealerGUI(10, 10);
 
 		p1GUI.buildPanel();
 		p2GUI.buildPanel();
 		p3GUI.buildPanel();
+		dGUI.buildPanel();
 
 		JPanel bet = new JPanel();
 		bet.setBounds(340, 690, 320, 50);
@@ -74,7 +74,8 @@ public class GUIGame extends Game {
 		f.add(p1GUI.getPanel());
 		f.add(p2GUI.getPanel());
 		f.add(p3GUI.getPanel());
-		f.add(dealerPan);
+		f.add(dGUI.getPanel());
+		
 		f.add(standButton);
 		f.add(hitButton);
 		f.add(bet);
