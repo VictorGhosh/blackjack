@@ -97,6 +97,7 @@ public class Game {
 	}
 
 	public void playDealer() {
+		this.dealer.flipCard();
 		while (this.dealer.getValue() <= 17) {
 			hit(this.dealer);
 		}

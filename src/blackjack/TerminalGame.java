@@ -33,27 +33,46 @@ public class TerminalGame extends Game {
 	 * Play the game
 	 */
 	public void play() {
-		System.out.println("Taking Bets...\n");
+		boolean play = true;				
+		while(play) {
+			System.out.println("Taking Bets...\n");
 
-		takeBets();
+			takeBets();
 
-		System.out.println("Dealing...\n");
-		deal();
+			System.out.println("\nDealing...\n");
+			deal();
 
-		// TODO: FIGURE OUT WHEN SECOND DEALER CARD SHOULD BE FLIPPED.
-		this.dealer.flipCard();
+			System.out.println(this);
 
-		System.out.println(this);
+			for (Player p : this.players) {
+				turn(p);
+			}
+			
+			System.out.println("------\nDealer is playing...\n");
+			playDealer();
+			
+			System.out.println(this);
 
-		for (Player p : this.players) {
-			turn(p);
-		}
+			payout();
 
-		payout();
-
-		System.out.println("Cash: ");
-		for (Player p : this.players) {
-			System.out.println("Player: " + (this.players.indexOf(p) + 1) + " has " + p.getCash() + "$");
+			System.out.println("Cash: ");
+			for (Player p : this.players) {
+				System.out.println("Player: " + (this.players.indexOf(p) + 1) + " has " + p.getCash() + "$");
+			}
+			
+			
+			System.out.println("Play a hand? (y/n)");
+			String res = "";
+			System.out.println("res is " + res);
+			while (!res.equals("y") && !res.equals("n")) {
+				res = getInput();
+				if (res.equals("n")) {
+					play = false;
+				} 
+				if (res.equals("y")) {
+					play = true;
+				}
+			}
 		}
 
 		this.input.close();
@@ -85,7 +104,6 @@ public class TerminalGame extends Game {
 
 		while (!bust && trash != null) {
 			System.out.println("Your hand is now: \n" + p);
-			System.out.println("Valued at " + p.getValue());
 			System.out.println("Enter s to stand or h to hit");
 			String s = getInput();
 			trash = move(p, s);
@@ -93,7 +111,7 @@ public class TerminalGame extends Game {
 		}
 		if (isBust(p)) {
 			System.out.println("Your hand is now: \n" + p);
-			System.out.println("You bust.");
+			System.out.println("You bust.\n");
 		}
 	}
 
