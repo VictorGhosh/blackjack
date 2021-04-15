@@ -60,6 +60,7 @@ public class PlayerGUI {
 		this.playerPan.setBounds(x, y, 320, 330);
 		this.playerPan.setBackground(tableColor);
 		this.playerPan.setBorder(makeBorder(outlineColor, 3, 20, title));
+		this.playerPan.setLayout(null);
 
 		// Make wallet
 		this.walletLab = new JLabel(" Wallet: ");
