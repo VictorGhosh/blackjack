@@ -1,22 +1,26 @@
 package game;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+
+import blackjack.Card;
+import blackjack.Player;
 
 /**
  * This class represents a players GUI within GUIGame. 
  */
 public class PlayerGUI {
+	
+	private Player player;
 
 	/**
 	 * The panel this class is making
@@ -50,7 +54,9 @@ public class PlayerGUI {
 	 * @param x x value for top left corner of panel
 	 * @param y y value for top left corner of panel
 	 */
-	public PlayerGUI(int x, int y, String title) {
+	public PlayerGUI(int x, int y, String title, Player p) {
+		this.player = p;
+		
 		// Table color scheme
 		Color tableColor = new Color(53, 101, 77);
 		Color outlineColor = Color.WHITE;
@@ -75,18 +81,22 @@ public class PlayerGUI {
 		this.betLab.setForeground(outlineColor);
 		
 		// Make card pile
-		String[][] rec = { { "", "" }, { "", "" }, { "", "" }};
-		String[] header = { "Rank", "Face" };
-
-		this.cardTable = new JTable(rec, header);
+		String[][] cards = { { "" }, { "" }, { "" }, { "" }, { "" }, { "" }, { "" }, { "" } };
+		this.cardTable = new JTable(cards, new String[] { "" });
+		this.cardTable.setTableHeader(null);
 		this.cardTable.setBackground(tableColor);
 		this.cardTable.setBounds(0, 0, 50, 50);
 		this.cardTable.setGridColor(tableColor);
-
+		this.cardTable.setForeground(outlineColor);
+		this.cardTable.setFont(new Font("arial", Font.BOLD, 15));
+		
+		// Center words in card pile
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+		this.cardTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
 		
 		this.scroller = new JScrollPane(this.cardTable);
 		this.scroller.setBounds(10, 30, 300, 250);
-		this.scroller.setPreferredSize(new Dimension(300, 250));
 		this.scroller.getViewport().setBackground(tableColor);
 		this.scroller.setBorder(BorderFactory.createEmptyBorder());
 	}
@@ -100,6 +110,19 @@ public class PlayerGUI {
 		return this.playerPan;
 	}
 
+	/**
+	 * Update the wallet amount with the amount of cash player has
+	 */
+	public void update() {
+		this.walletLab.setText(" Wallet: " + this.player.getCash() + "$");
+		this.betLab.setText(" Bet: " + this.player.getBet() + "$");
+				
+		for (Card c : this.player.getHand()) {
+			this.cardTable.setRowHeight(this.player.getHand().indexOf(c), 30);
+			this.cardTable.setValueAt(c.toString(), this.player.getHand().indexOf(c), 0);
+		}		
+	}
+	
 	/**
 	 * Put entities created in the constructor onto the panel
 	 */

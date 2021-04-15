@@ -39,6 +39,7 @@ public class DealerGUI {
 		this.dealerPan.setBounds(10, 10, 980, 330);
 		this.dealerPan.setBackground(tableColor);
 		this.dealerPan.setBorder(makeBorder(outlineColor, 3, 20, "Dealer"));
+		this.dealerPan.setLayout(null);
 		
 		// Make card pile
 		// Make card pile

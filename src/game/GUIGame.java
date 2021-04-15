@@ -14,20 +14,17 @@ import blackjack.Game;
 
 public class GUIGame extends Game {
 	
-	/**
-	 * Initialize a game with the GUI with one player
-	 */
-	public GUIGame() {
-		this(1);
-	}
-
+	private PlayerGUI p1GUI;
+	private PlayerGUI p2GUI;
+	private PlayerGUI p3GUI;
+	
 	/**
 	 * Initialize a game in the GUI with a specified number of players
 	 * 
 	 * @param numPlayers number of players in the game
 	 */
-	public GUIGame(int numPlayers) {
-		super(numPlayers);
+	public GUIGame() {
+		super(3);
 	}
 
 	/**
@@ -39,15 +36,15 @@ public class GUIGame extends Game {
 		
 		JFrame f = new JFrame("Blackjack");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setSize(1000 + 15 + 10, 750 + 35 + 10);
+		f.setSize(1000 + 15, 750 + 35);
 		f.setBackground(tableColor);
 		f.getContentPane().setBackground(tableColor);
 		f.getContentPane().setLayout(null);
 		f.setVisible(true);
 		
-		PlayerGUI p1GUI = new PlayerGUI(10, 350, "Player 1");
-		PlayerGUI p2GUI = new PlayerGUI(340, 350, "Player 2");
-		PlayerGUI p3GUI = new PlayerGUI(670, 350, "Player 3");
+		this.p1GUI = new PlayerGUI(10, 350, "Player 1", this.players.get(0));
+		this.p2GUI = new PlayerGUI(340, 350, "Player 2", this.players.get(1));
+		this.p3GUI = new PlayerGUI(670, 350, "Player 3", this.players.get(2));
 		
 		// TODO: DealerGUI should probably extend some sort of player GUI or something
 		// ACTUALY I THINK IT SHOULD BE AN INTERFACE
@@ -80,10 +77,27 @@ public class GUIGame extends Game {
 		f.add(hitButton);
 		f.add(bet);
 		
-//		f.revalidate();
 		f.repaint();
 	}
 	
+	/**
+	 * Update the GUI values and cards
+	 */
+	public void update() {
+		this.p1GUI.update();
+		this.p2GUI.update();
+		this.p3GUI.update();
+	}
+	
+	/**
+	 * Makes a Border object with the given specifications
+	 * 
+	 * @param c         Color of border and title
+	 * @param thickness Thickness of border
+	 * @param fontSize  Size of title font
+	 * @param title     Title for border to display
+	 * @return The new border
+	 */
 	private Border makeBorder(Color c, int thickness, int fontSize, String title) {
 		Border b = BorderFactory.createLineBorder(c, thickness);
 		TitledBorder res = BorderFactory.createTitledBorder(b, title);
