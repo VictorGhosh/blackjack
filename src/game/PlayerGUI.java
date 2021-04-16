@@ -10,7 +10,7 @@ import blackjack.Card;
 import blackjack.Player;
 
 /**
- * This class represents a players GUI within GameGUI.
+ * This class represents a players GUI within MainGUI.
  */
 public class PlayerGUI extends PersonGUI {
 
@@ -55,23 +55,23 @@ public class PlayerGUI extends PersonGUI {
 	@Override
 	public void buildPanel(int x, int y) {
 		this.personPan.setBounds(x, y, 320, 330);
-		this.personPan.setBackground(GameGUI.tableColor);
-		this.personPan.setBorder(GameGUI.makeBorder(GameGUI.outlineColor, 3, 20, this.displayName));
+		this.personPan.setBackground(MainGUI.tableColor);
+		this.personPan.setBorder(MainGUI.makeBorder(MainGUI.outlineColor, 3, 20, this.displayName));
 		this.personPan.setLayout(null);
 
 		this.walletLab.setBounds(10, 290, 145, 30);
-		this.walletLab.setBorder(BorderFactory.createLineBorder(GameGUI.outlineColor, 1));
-		this.walletLab.setForeground(GameGUI.outlineColor);
+		this.walletLab.setBorder(BorderFactory.createLineBorder(MainGUI.outlineColor, 1));
+		this.walletLab.setForeground(MainGUI.outlineColor);
 
 		this.betLab.setBounds(165, 290, 145, 30);
-		this.betLab.setBorder(BorderFactory.createLineBorder(GameGUI.outlineColor, 1));
-		this.betLab.setForeground(GameGUI.outlineColor);
+		this.betLab.setBorder(BorderFactory.createLineBorder(MainGUI.outlineColor, 1));
+		this.betLab.setForeground(MainGUI.outlineColor);
 
 		this.cardTable.setTableHeader(null);
-		this.cardTable.setBackground(GameGUI.tableColor);
+		this.cardTable.setBackground(MainGUI.tableColor);
 		this.cardTable.setBounds(0, 0, 50, 50);
-		this.cardTable.setGridColor(GameGUI.tableColor);
-		this.cardTable.setForeground(GameGUI.outlineColor);
+		this.cardTable.setGridColor(MainGUI.tableColor);
+		this.cardTable.setForeground(MainGUI.outlineColor);
 		this.cardTable.setFont(new Font("arial", Font.BOLD, 15));
 
 		// Center words in card pile
@@ -80,7 +80,7 @@ public class PlayerGUI extends PersonGUI {
 		this.cardTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
 
 		this.scroller.setBounds(10, 30, 300, 250);
-		this.scroller.getViewport().setBackground(GameGUI.tableColor);
+		this.scroller.getViewport().setBackground(MainGUI.tableColor);
 		this.scroller.setBorder(BorderFactory.createEmptyBorder());
 
 		this.personPan.add(this.walletLab);

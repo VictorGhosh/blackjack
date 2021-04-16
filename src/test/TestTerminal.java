@@ -1,6 +1,6 @@
 package test;
 
-import blackjack.TerminalGame;
+import terminalGame.TerminalGame;
 
 public class TestTerminal {
 

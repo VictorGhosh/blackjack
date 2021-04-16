@@ -1,6 +1,9 @@
-package blackjack;
+package terminalGame;
 
 import java.util.Scanner;
+
+import blackjack.Game;
+import blackjack.Player;
 
 /**
  * This object represents a game of blackjack in the terminal

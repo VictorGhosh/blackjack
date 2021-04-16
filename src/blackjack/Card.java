@@ -71,7 +71,11 @@ public final class Card {
 
 	@Override
 	public String toString() {
-		return this.rank + " of " + this.suit;
+		StringBuilder rank = new StringBuilder(this.rank.toString().toLowerCase());
+		StringBuilder suit = new StringBuilder(this.suit.toString().toLowerCase());
+		rank.replace(0, 1, String.valueOf(rank.charAt(0)).toUpperCase());
+		suit.replace(0, 1, String.valueOf(suit.charAt(0)).toUpperCase());
+		return rank + " of " + suit;
 	}
 
 	@Override
