@@ -1,7 +1,5 @@
 package game;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
@@ -9,8 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import blackjack.Card;
@@ -105,7 +101,7 @@ public class PersonGUI {
 	 */
 	public void update() {
 		for (Card c : this.player.getHand()) {
-			this.cardTable.setRowHeight(this.player.getHand().indexOf(c), 30);
+//			this.cardTable.setRowHeight(this.player.getHand().indexOf(c), 30);
 			this.cardTable.setValueAt(c.toString(), this.player.getHand().indexOf(c), 0);
 		}
 	}

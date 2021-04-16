@@ -34,14 +34,13 @@ public class Dealer extends Player {
 	 * 
 	 * @return list of visible cards in hand
 	 */
-	//THIS IS NOT IN ORDER BECAUSE IT IS IMPLEMENT IN GameGUI.java. NEEDS TO BE FIXED
-//	@Override
-//	public List<Card> getHand() {
-//		List<Card> res = new ArrayList<>(this.hand);
-//		if (!showCard2) {
-//			res.remove(1);
-//		}
-//		return res;
-//	}
+	@Override
+	public List<Card> getHand() {
+		List<Card> res = new ArrayList<>(this.hand);
+		if (!showCard2 && !res.isEmpty()) {
+			res.remove(1);
+		}
+		return res;
+	}
 
 }
