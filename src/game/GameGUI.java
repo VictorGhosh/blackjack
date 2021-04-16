@@ -12,18 +12,30 @@ import javax.swing.border.TitledBorder;
 
 import blackjack.Game;
 
-public class GUIGame extends Game {
+public class GameGUI extends Game {
+	
+	/**
+	 * The color of background or "table" in game
+	 */
+	public final static Color tableColor = new Color(53, 101, 77);
+
+	/**
+	 * The secondary color of the table
+	 */
+	public final static Color outlineColor = Color.WHITE;
 	
 	private PlayerGUI p1GUI;
 	private PlayerGUI p2GUI;
 	private PlayerGUI p3GUI;
+	
+	private PersonGUI dGUI;
 	
 	/**
 	 * Initialize a game in the GUI with a specified number of players
 	 * 
 	 * @param numPlayers number of players in the game
 	 */
-	public GUIGame() {
+	public GameGUI() {
 		super(3);
 	}
 
@@ -31,9 +43,6 @@ public class GUIGame extends Game {
 	 * Build starting frame
 	 */
 	public void buildFrame() {
-		Color tableColor = new Color(53, 101, 77);
-		Color outlineColor = Color.WHITE;
-		
 		JFrame f = new JFrame("Blackjack");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setSize(1000 + 15, 750 + 35);
@@ -42,18 +51,15 @@ public class GUIGame extends Game {
 		f.getContentPane().setLayout(null);
 		f.setVisible(true);
 		
-		this.p1GUI = new PlayerGUI(10, 350, "Player 1", this.players.get(0));
-		this.p2GUI = new PlayerGUI(340, 350, "Player 2", this.players.get(1));
-		this.p3GUI = new PlayerGUI(670, 350, "Player 3", this.players.get(2));
-		
-		// TODO: DealerGUI should probably extend some sort of player GUI or something
-		// ACTUALY I THINK IT SHOULD BE AN INTERFACE
-		DealerGUI dGUI = new DealerGUI(10, 10);
+		this.p1GUI = new PlayerGUI("Player 1", this.players.get(0));
+		this.p2GUI = new PlayerGUI("Player 2", this.players.get(1));
+		this.p3GUI = new PlayerGUI("Player 3", this.players.get(2));
+		this.dGUI = new PersonGUI(this.dealer);
 
-		p1GUI.buildPanel();
-		p2GUI.buildPanel();
-		p3GUI.buildPanel();
-		dGUI.buildPanel();
+		p1GUI.buildPanel(10, 350);
+		p2GUI.buildPanel(340, 350);
+		p3GUI.buildPanel(670, 350);
+		dGUI.buildPanel(10, 10);
 
 		JPanel bet = new JPanel();
 		bet.setBounds(340, 690, 320, 50);
@@ -87,6 +93,7 @@ public class GUIGame extends Game {
 		this.p1GUI.update();
 		this.p2GUI.update();
 		this.p3GUI.update();
+		this.dGUI.update();
 	}
 	
 	/**
