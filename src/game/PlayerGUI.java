@@ -56,7 +56,7 @@ public class PlayerGUI extends PersonGUI {
 	public void buildPanel(int x, int y) {
 		this.personPan.setBounds(x, y, 320, 330);
 		this.personPan.setBackground(GameGUI.tableColor);
-		this.personPan.setBorder(makeBorder(GameGUI.outlineColor, 3, 20, this.displayName));
+		this.personPan.setBorder(GameGUI.makeBorder(GameGUI.outlineColor, 3, 20, this.displayName));
 		this.personPan.setLayout(null);
 
 		this.walletLab.setBounds(10, 290, 145, 30);

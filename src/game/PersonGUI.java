@@ -65,7 +65,7 @@ public class PersonGUI {
 	public void buildPanel(int x, int y) {
 		this.personPan.setBounds(x, y, 980, 330);
 		this.personPan.setBackground(GameGUI.tableColor);
-		this.personPan.setBorder(makeBorder(GameGUI.outlineColor, 3, 20, "Dealer"));
+		this.personPan.setBorder(GameGUI.makeBorder(GameGUI.outlineColor, 3, 20, "Dealer"));
 		this.personPan.setLayout(null);
 
 		this.cardTable.setBackground(GameGUI.tableColor);
@@ -108,23 +108,5 @@ public class PersonGUI {
 			this.cardTable.setRowHeight(this.player.getHand().indexOf(c), 30);
 			this.cardTable.setValueAt(c.toString(), this.player.getHand().indexOf(c), 0);
 		}
-	}
-
-	/**
-	 * Makes a Border object with the given specifications
-	 * 
-	 * @param c         Color of border and title
-	 * @param thickness Thickness of border
-	 * @param fontSize  Size of title font
-	 * @param title     Title for border to display
-	 * @return The new border
-	 */
-	public Border makeBorder(Color c, int thickness, int fontSize, String title) {
-		Border b = BorderFactory.createLineBorder(c, thickness);
-		TitledBorder res = BorderFactory.createTitledBorder(b, title);
-		res.setTitleFont(new Font("Arial", Font.BOLD, fontSize));
-		res.setTitleJustification(TitledBorder.CENTER);
-		res.setTitleColor(c);
-		return res;
 	}
 }
